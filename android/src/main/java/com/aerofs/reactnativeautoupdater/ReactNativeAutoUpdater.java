@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.os.AsyncTask;
 import android.os.PowerManager;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.Toast;
 
 import okhttp3.OkHttpClient;
