@@ -263,11 +263,19 @@ public class ReactNativeAutoUpdater {
         this.activity.updateFinished();
     }
 
+    private final Handler handler = new Handler() {
+      public void handleMessage(Message msg) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, msg.arg1, duration);
+        toast.show();
+      }
+    };
+
     private void showProgressToast(int message) {
-        if (this.showProgress && context.getResources().getString(message).length() > 0) {
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.show();
+        if (this.showProgress) {
+            Message msg = handler.obtainMessage();
+            msg.arg1 = message;
+            handler.sendMessage(msg);
         }
     }
 
